@@ -81,4 +81,12 @@ class SchedulerService {
             }
         }
     }
+
+    def metric(project) {
+        rabbitMessagePublisher.send {
+                    routingKey = "Trace.update"
+                    exchange = 'testGemsBBExchange'
+                    body = project
+                }
+    }
 }
